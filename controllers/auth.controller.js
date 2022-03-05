@@ -125,11 +125,17 @@ exports.logoutProcess = (req, res) => {
   const date = new Date("Thu, 01 Jan 1970 00:00:00 GMT");
   res.cookie("headload", "", {
     maxAge: -1,
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
     expires: date,
   });
 
   res.cookie("signature", "", {
     maxAge: -1,
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
     expires: date,
   });
 
