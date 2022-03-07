@@ -11,3 +11,8 @@ exports.createJWT = (user) => {
         { algorithm: "HS256", expiresIn: "6h" }
     ).split('.');
 };
+
+exports.clearRes = (data) => {
+    const {passwordHash, __v, updatedAt, isActive, createdAt, ...cleared} = data;
+    return cleared;
+}

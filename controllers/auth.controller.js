@@ -2,7 +2,8 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const mongoose = require("mongoose");
-const { createJWT } = require("../utils/general-utils");
+const { createJWT, clearRes } = require("../utils/general-utils");
+const jwt = require("jsonwebtoken");
 
 exports.signupProcess = async (req, res) => {
   const { name, email, password, confirmPassword, ...rest } = req.body;
@@ -154,4 +155,22 @@ exports.accountremovalProcess = async (req, res) => {
   } catch (error) {
     return res.status(400).json({ errorMessage: error });
   }
+};
+
+exports.verifyAuth = (req, res) => {
+  const { headload, signature } = req.cookies;
+  jwt.verify(
+    `${headload}.${signature}`,
+    process.env.SECRET,
+    (error, decoded) => {
+      if (error) {
+        return res.status(401).json({ errorMessage: "Unauthorized" });
+      }
+
+      User.findById(decoded.userId).then((dbuser) => {
+        const user = clearRes(dbuser.toObject());
+        return res.status(200).json({ user: user });
+      });
+    }
+  );
 };

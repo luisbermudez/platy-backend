@@ -10,9 +10,9 @@ const locationSchema = new Schema(
       latitude: String,
       longitude: String,
     },
-    _user: {
+    _clip: {
       type: Schema.Types.ObjectId,
-      ref: "Location",
+      ref: "Clip",
     },
   },
   {
@@ -20,4 +20,4 @@ const locationSchema = new Schema(
   }
 );
 
-module.exports = model("Videolocation", locationSchema);
+module.exports = model("Location", locationSchema);
