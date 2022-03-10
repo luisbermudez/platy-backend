@@ -4,11 +4,17 @@ const locationSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      // required: true,
     },
     coordinates: {
-      latitude: String,
-      longitude: String,
+      latitude: {
+        type: String,
+        required: true,
+      },
+      longitude: {
+        type: String,
+        required: true,
+      },
     },
     _clip: {
       type: Schema.Types.ObjectId,

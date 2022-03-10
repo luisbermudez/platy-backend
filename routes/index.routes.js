@@ -7,6 +7,6 @@ router.get("/", (req, res, next) => {
 });
 
 router.use("/auth", authRoutes);
-router.use("/videolocations", authRoutes);
+router.use("/videolocations", videolocationRoutes);
 
 module.exports = router;
