@@ -26,9 +26,10 @@ const userSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      // default:
+      default:
+        "https://res.cloudinary.com/dnye3j9zg/image/upload/v1646966510/platy/ttb1fsl5ukuveijkro7e.png",
     },
-    isActive: Boolean
+    isActive: Boolean,
   },
   {
     timestamps: true,
