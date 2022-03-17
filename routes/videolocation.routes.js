@@ -20,7 +20,7 @@ router.post("/create", createProcess);
 
 router.post("/update", updateProcess);
 
-router.post("/delete", fileUploader.single("public_id"), deleteProcess);
+router.post("/delete", deleteProcess);
 
 router.post("/upload", fileUploader.single("videoFile"), uploadProcess);
 
