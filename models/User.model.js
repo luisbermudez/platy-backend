@@ -27,7 +27,7 @@ const userSchema = new Schema(
     profilePicture: {
       type: String,
       default:
-        "https://res.cloudinary.com/dnye3j9zg/image/upload/v1646966510/platy/ttb1fsl5ukuveijkro7e.png",
+        "https://res.cloudinary.com/dnye3j9zg/image/upload/v1647536910/platy/pp_g8swb2.png",
     },
     isActive: Boolean,
   },
