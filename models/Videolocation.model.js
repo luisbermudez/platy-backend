@@ -16,6 +16,7 @@ const videolocationSchema = new Schema(
       type: String,
       required: true,
     },
+    views: Number,
     public_id: String,
     location: {
       name: String,

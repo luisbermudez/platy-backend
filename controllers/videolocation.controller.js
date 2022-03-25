@@ -9,6 +9,7 @@ exports.createProcess = async (req, res) => {
     const { name, ...rest } = values;
     rest.videoUrl = videoUrl;
     rest.public_id = public_id;
+    rest.views = 0;
     rest.location = {
       name,
       coordinates: { latitude: coordinateLat, longitude: coordinateLng },
@@ -33,7 +34,10 @@ exports.createProcess = async (req, res) => {
 
 exports.readProcess = async (req, res) => {
   try {
-    const dbVideolocations = await Videolocation.find();
+    const sort = { createdAt: -1 };
+    const dbVideolocations = await Videolocation.find()
+      .sort(sort)
+      .populate("_user");
     return res.status(200).json(dbVideolocations);
   } catch (error) {
     return res.status(400).json({ errorMessage: error });
@@ -58,11 +62,23 @@ exports.userLocationsProcess = async (req, res) => {
 exports.locationDetails = async (req, res) => {
   try {
     const { _id } = req.body;
-    const dbLocation = await Videolocation.findById(_id);
+    const dbLocation = await Videolocation.findById(_id).populate("_user");
     if (dbLocation) {
       return res.status(200).json({ dbLocation });
     }
     return res.status(400).json({ errorMessage: "Location not found" });
+  } catch (error) {
+    return res.status(400).json({ errorMessage: error });
+  }
+};
+
+exports.updateViewsNumber = async (req, res) => {
+  try {
+    const { _id } = req.body;
+    const dbLocation = await Videolocation.findById(_id);
+    dbLocation.views++;
+    dbLocation.save();
+    return res.status(200).json({ message: "Views updated" });
   } catch (error) {
     return res.status(400).json({ errorMessage: error });
   }
@@ -73,7 +89,11 @@ exports.updateProcess = async (req, res) => {
     const { _id, values } = req.body;
     const updatedLocation = await Videolocation.findByIdAndUpdate(
       { _id },
-      { title: values.title, description: values.description }
+      {
+        title: values.title,
+        description: values.description,
+        $set: { "location.name": values.locationName },
+      }
     );
     if (updatedLocation) {
       return res.status(200).json("Videolocation has been updated.");
@@ -85,6 +105,7 @@ exports.updateProcess = async (req, res) => {
     return res.status(400).json({ errorMessage: error });
   }
 };
+
 exports.deleteProcess = async (req, res) => {
   const { _id, public_id } = req.body;
   console.log(_id, public_id);
@@ -92,7 +113,7 @@ exports.deleteProcess = async (req, res) => {
     await cloudinary.uploader.destroy(public_id, { resource_type: "video" });
     await Videolocation.findByIdAndDelete(_id);
     return res.status(200).json("Videolocation has been deleted.");
-  } catch(error) {
+  } catch (error) {
     return res.status(400).json({ errorMessage: error });
   }
 };
