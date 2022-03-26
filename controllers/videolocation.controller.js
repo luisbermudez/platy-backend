@@ -47,10 +47,13 @@ exports.readProcess = async (req, res) => {
 exports.userLocationsProcess = async (req, res) => {
   try {
     const { _id } = req.body;
+    const sort = { createdAt: -1 };
     const dbUser = await User.findById(_id);
     if (dbUser) {
       const { _id: _user } = dbUser;
-      const currentUserVideolocations = await Videolocation.find({ _user });
+      const currentUserVideolocations = await Videolocation.find({
+        _user,
+      }).sort(sort);
       return res.status(200).json(currentUserVideolocations);
     }
     return res.status(400).json({ errorMessage: "User not found in database" });
