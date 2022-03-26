@@ -111,7 +111,6 @@ exports.updateProcess = async (req, res) => {
 
 exports.deleteProcess = async (req, res) => {
   const { _id, public_id } = req.body;
-  console.log(_id, public_id);
   try {
     await cloudinary.uploader.destroy(public_id, { resource_type: "video" });
     await Videolocation.findByIdAndDelete(_id);
