@@ -5,7 +5,7 @@
 
 # About Platy
 
-Platy is a MERN Fullstack Application where you can find places to go rollerblading. You can also watch clips from people around the world rollerblading. If you know a cool spot and want to share it with the community you can sing up, then go to __Share your flow__, drop a pin and attach to it a clip of you rollerblaing. [Take a look](https://platywebsite.netlify.app/).
+Platy is a MERN Fullstack Application where you can find places to go rollerblading. You can also watch clips from people around the world rollerblading. If you know a cool spot and want to share it with the community you can sing up, then go to **Share your flow**, drop a pin and attach to it a clip of you rollerblaing. [Take a look](https://platywebsite.netlify.app/).
 
 ![Platy landing page](./assets/images/mapAndVideoPreview.png)
 <br>
@@ -15,8 +15,9 @@ Platy is a MERN Fullstack Application where you can find places to go rollerblad
 
 # Backend Introduction
 
-This is the backend of the application and it has been built around the REST API architectural constraints using Express for Node.js and MongoDB for database CRUD operations. To work with it check the information bellow. If you wish to check the frontend of this application instead, go to [Platy frontend](https://github.com/luisbermudez/platy-frontend). 
+This is the backend of the application and it has been built around the REST API architectural constraints using Express for Node.js and MongoDB for database CRUD operations. To work with the backend check the information bellow. If you wish to check the frontend of this application instead, go to [Platy Frontend](https://github.com/luisbermudez/platy-frontend).
 
+<br>
 <br>
 
 ## Prerequisites
@@ -30,7 +31,7 @@ yarn -v
 
 <br>
 
-## Clone and run the project
+## Clone and set yarn package manager
 
 1. Clone this repository
 
@@ -38,7 +39,7 @@ yarn -v
 git clone https://github.com/luisbermudez/platy-backend.git
 ```
 
-2. Run yarn command inside the project directory
+2. Run the yarn command inside the project's directory
 
 ```sh
 yarn
@@ -59,7 +60,7 @@ yarn
 - morgan
 - multer
 - multer-storage-cloudinary
-  <br>
+<br>
 
 If you are missing any of the dependencies above, run: yarn add **name-of-dependency**. For instance, to add **bcryptjs** the command would be:
 
@@ -67,9 +68,11 @@ If you are missing any of the dependencies above, run: yarn add **name-of-depend
 yarn add bcryptjs
 ```
 
+<br>
+
 ## Scripts
 
-Use yarn dev to get it running.
+Use yarn dev to get the backend running.
 
 ```sh
 yarn dev
@@ -79,10 +82,8 @@ yarn dev
 <br>
 
 # REST API Introduction
-This section will help you get familiar with the resources of this REST API and show you how to make different requests.
 
-<br>
-<br>
+This section will help you get familiar with the resources of this REST API and show you how to make different requests.
 
 **BASE URL:** `https://platybend.herokuapp.com/api/`
 
@@ -258,4 +259,5 @@ post https://platybend.herokuapp.com/api/videolocations/delete
 
 ## Important
 
-Cross-Origin Resource Sharing has been setup for this backend to only accept requests from [Platy frontend](https://github.com/luisbermudez/platy-frontend).
+- Cross-Origin Resource Sharing has been setup for Platy Backend to only accept requests from [Platy Frontend](https://github.com/luisbermudez/platy-frontend).
+- Credentials to use Mapbox and Cloudinary are required.
