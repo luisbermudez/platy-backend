@@ -98,15 +98,15 @@ exports.loginProcess = async (req, res) => {
       res.cookie("headload", `${header}.${payload}`, {
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
+        sameSite: "none",
+        secure: true,
       });
 
       res.cookie("signature", signature, {
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
+        sameSite: "none",
+        secure: true,
       });
 
       return res.status(200).json("User has been authenticated.");
@@ -127,16 +127,16 @@ exports.logoutProcess = (req, res) => {
   res.cookie("headload", "", {
     maxAge: -1,
     httpOnly: true,
-    sameSite: "lax",
-    secure: false,
+    sameSite: "none",
+    secure: true,
     expires: date,
   });
 
   res.cookie("signature", "", {
     maxAge: -1,
     httpOnly: true,
-    sameSite: "lax",
-    secure: false,
+    sameSite: "none",
+    secure: true,
     expires: date,
   });
 
