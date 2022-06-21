@@ -99,6 +99,7 @@ exports.loginProcess = async (req, res) => {
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
         sameSite: "none",
+        sameSite: "strict",
         secure: true,
       });
 
@@ -106,6 +107,7 @@ exports.loginProcess = async (req, res) => {
         maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true,
         sameSite: "none",
+        sameSite: "strict",
         secure: true,
       });
 
@@ -127,7 +129,8 @@ exports.logoutProcess = (req, res) => {
   res.cookie("headload", "", {
     maxAge: -1,
     httpOnly: true,
-    sameSite: "none",
+    // sameSite: "none",
+    sameSite: "strict",
     secure: true,
     expires: date,
   });
@@ -135,7 +138,8 @@ exports.logoutProcess = (req, res) => {
   res.cookie("signature", "", {
     maxAge: -1,
     httpOnly: true,
-    sameSite: "none",
+    // sameSite: "none",
+    sameSite: "strict",
     secure: true,
     expires: date,
   });
