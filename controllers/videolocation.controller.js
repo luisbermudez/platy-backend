@@ -133,3 +133,13 @@ exports.uploadProcess = async (req, res) => {
     return res.status(400).json({ errorMessage: error });
   }
 };
+
+exports.deleteVideoCloudinary = async (req, res) => {
+  const { public_id } = req.body;
+  try {
+    await cloudinary.uploader.destroy(public_id, { resource_type: "video" });
+    return res.status(200).json("Video removed from Cloudinary.");
+  } catch (error) {
+    return res.status(400).json({ errorMessage: error });
+  }
+};

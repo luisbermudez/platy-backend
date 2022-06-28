@@ -8,6 +8,7 @@ const {
   uploadProcess,
   locationDetails,
   updateViewsNumber,
+  deleteVideoCloudinary,
 } = require("../controllers/videolocation.controller");
 const fileUploader = require("../config/cloudinary.config");
 
@@ -26,5 +27,7 @@ router.post("/updateViews", updateViewsNumber);
 router.post("/delete", deleteProcess);
 
 router.post("/upload", fileUploader.single("videoFile"), uploadProcess);
+
+router.post("/deleteVideo-cloudinaryServices", deleteVideoCloudinary);
 
 module.exports = router;
