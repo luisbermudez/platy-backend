@@ -11,12 +11,10 @@ module.exports = (app) => {
 
     // only render if the error ocurred before sending the response
     if (!res.headersSent) {
-      res
-        .status(500)
-        .json({
-          // errorMessage: "Internal server error. Please try again later.",
-          errorMessage: `Internal server error: ${err.message}`,
-        });
+      res.status(500).json({
+        // errorMessage: "Internal server error. Please try again later.",
+        errorMessage: `${err.http_code} - ${err.message}`,
+      });
     }
   });
 };
