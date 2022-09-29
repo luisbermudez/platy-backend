@@ -109,7 +109,8 @@ exports.loginProcess = async (req, res) => {
         secure: true,
       });
 
-      return res.status(200).json("User has been authenticated.");
+      const usersGenInfo = clearRes(dbuser.toObject());
+      return res.status(200).json({ user: usersGenInfo });
     } else {
       return res
         .status(400)
